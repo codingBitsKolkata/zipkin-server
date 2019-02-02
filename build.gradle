@@ -14,12 +14,24 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
-group = 'com.stays.zipkin-server'
-version = '0.0.1-SNAPSHOT'
+group = 'com.orastays'
+//version = '1'
 sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Zipkin Server',  
+        	//'Implementation-Version': version,
+        	'Main-Class': 'com.orastays.zipkinserver.ZipkinServerApplication'
+    }
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 
@@ -31,9 +43,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile('org.springframework.cloud:spring-cloud-starter-eureka')
-	// https://mvnrepository.com/artifact/io.zipkin.java/zipkin-server
 	compile group: 'io.zipkin.java', name: 'zipkin-server'
-	// https://mvnrepository.com/artifact/io.zipkin.java/zipkin-autoconfigure-ui
 	compile group: 'io.zipkin.java', name: 'zipkin-autoconfigure-ui'
 	
 	
