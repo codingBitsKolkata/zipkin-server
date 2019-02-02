@@ -1,4 +1,4 @@
-package com.stays.zipkinserver;
+package com.orastays.zipkinserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
