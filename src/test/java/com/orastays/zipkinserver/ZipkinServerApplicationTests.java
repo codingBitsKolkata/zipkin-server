@@ -1,4 +1,4 @@
-package com.stays.zipkinserver;
+package com.orastays.zipkinserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
